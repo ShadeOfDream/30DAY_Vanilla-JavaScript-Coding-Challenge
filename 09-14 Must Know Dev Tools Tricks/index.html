@@ -1,1 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf8mb4">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console Tricks!</title>
+</head>
+<body>
+        <p onClick="makeGreen()">>xBREAKxDOWNx</p>
 
+        <script>
+            const dogs = [{ name: "Snickers", age:2 }, { name: "hugo", age:8 }];
+
+            function makeGreen() {
+                const p = document.querySelector('p');
+                p.style.color = '#BADA55';
+                p.style.fontSize = '50px';
+            }
+
+            // Regular
+            console.log("Hello");
+
+            // Interpolated
+            console.log("Hello I'm a %s string!","🛴");
+            // var 🛴 = "hello ";            
+            // console.log(`Hello I'm a ${🛴} string`);
+
+            // Styled
+            console.log("%c I'm some great text","font-size:50px; color:darkblue; background:lightblue; text-shadow: 10px 10px 0 grey");
+
+            // warning!
+            console.warn("Oh NOOO");
+
+            // Error :|
+            console.error("Error!!!!");
+
+            // Info
+            console.info("The largest crocodile is the saltwater crocodile. The largest one ever found was 20.24 feet (6.17 m) long. They can weigh up to 2,000 pounds (907 kg).");
+            
+            // Testing
+            // console.assert("1 === 1", "That is wrong!");
+            // console.assert(1 === 2, "You did not swlect the right Element!");
+            const p = document.querySelector('p');
+            console.assert(p.classList.contains('ouch'), "That is wrong!");
+           
+            // clearing
+            console.clear();
+
+            // Viewing DOM Elements
+            console.log(p);
+            console.dir(p);
+
+            console.clear();
+
+
+            // Grouping together
+            dogs.forEach(dog => {
+                console.groupCollapsed(`${dog.name.charAt(0).toUpperCase()+dog.name.slice(1)}`);
+                console.log(`This is ${dog.name}`);
+                console.log(`${dog.name.charAt(0).toUpperCase()+dog.name.slice(1)} is ${dog.age} years old`);
+                console.log(`5 years later ${dog.name.charAt(0).toUpperCase()+dog.name.slice(1)} is ${dog.age + 5 } years old`);
+                console.groupEnd(`${dog.name.charAt(0).toUpperCase()+dog.name.slice(1)}`);
+            });
+
+            // counting
+            console.count('Wes');
+            console.count('Wes');
+            console.count('Steve');
+            console.count('Steve');
+            console.count('Steve');
+            console.count('Steve');
+            console.count('Wes');
+            console.count('Wes');
+            console.count('Wes');
+            console.count('Wes');
+            console.count('Steve');
+            console.count('Steve');
+
+            // timing
+            console.time('fetching data');
+            fetch('https://api.github.com/users/wesbos')
+                .then(data => data.json())
+                .then(data =>{
+                    console.timeEnd('fetching data');
+                    console.log(data);
+                });
+
+             console.table(dogs);
+
+        </script>
+    </body>
+  </html>
